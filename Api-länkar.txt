@@ -1,0 +1,22 @@
+https://api.coincap.io/v2/assets
+
+https://api.nomics.com/v1/markets?key=33a14a71ecb4c73ab95efadba9ca199d7a17158d
+
+
+CryptoApis: c16656763851dcc29bd211a53df568098a764ea2
+https://rest.cryptoapis.io/
+
+
+
+
+CRYPTO:
+https://min-api.cryptocompare.com/data/all/coinlist
+https://min-api.cryptocompare.com/data/all/coinlist?api_key=%7B05e973bbee79c8f715522f2ffc4228a6c8f74cf63e91ffb33441369bbc3742fa%7D
+https://min-api.cryptocompare.com/data/all/coinlist?summary=true&api_key=%7B05e973bbee79c8f715522f2ffc4228a6c8f74cf63e91ffb33441369bbc3742fa%7D
+
+https://www.cryptocompare.com/media/20479/xau.png
+https://www.cryptocompare.com/ + bild-url
+
+
+POKEMON:
+https://pokeapi.co/api/v2/pokemon?limit=898
