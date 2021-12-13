@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 
 class GetRandomPokemon extends Component {
@@ -14,15 +12,18 @@ class GetRandomPokemon extends Component {
     }
 
     componentDidMount() {
+        var randomSeconds = Math.floor(Math.random() * 1600);
         fetch('https://pokeapi.co/api/v2/pokemon?limit=898')
             .then((response) => response.json())
             .then((data) => {
-                this.setState({
-                    pokemons: data.results,
-                    loading: true
-                }, () => {
-                    this.randomPokemon();
-                })
+                setTimeout(function () {
+                    this.setState({
+                        pokemons: data.results,
+                        loading: true
+                    }, () => {
+                        this.randomPokemon();
+                    })
+                }.bind(this), randomSeconds)
             })
             .catch(error => console.log('Error', error));
     }

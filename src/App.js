@@ -1,14 +1,22 @@
 import GetRandomCrypto from './components/GetRandomCrypto';
 import GetRandomPokemon from './components/GetRandomPokemon';
+import Modal from './components/Modal';
 import React, { Component } from 'react';
 
 
+
+
 class App extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super();
     this.state = {
-      initiate: Math.floor(Math.random() * 2) + 1,
-    }
+      counter: 0,
+      showAnswer: false,
+      answer: '',
+      initiate: Math.floor(Math.random() * 2) + 1
+    };
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
 
@@ -16,29 +24,25 @@ class App extends Component {
     if (this.state.initiate === 1) {
       return <GetRandomCrypto />
     }
-    else {
+    else if (this.state.initiate === 2) {
       return <GetRandomPokemon />
     }
   }
 
 
-  /*  resetState(_callback) {
-     this.setState({ initiate: 0 });
-     console.log('Reset state:' + this.state.initiate);
- 
-   } */
+  resetState() {
+    this.setState({
+      initiate: 0
+    }, () => {
+      this.update();
+    });
+  }
 
 
-  update () {
 
-    this.setState({ initiate: 0 }, () => console.log(this.state.initiate));
-
-    console.log(this.state.initiate);
-
-
+  update() {
     let newInitiate = Math.floor(Math.random() * 2) + 1;
 
-    console.log(newInitiate);
     this.setState({
       initiate: newInitiate
     });
@@ -47,26 +51,51 @@ class App extends Component {
 
 
 
+
   handleCryptoClick = () => {
     if (this.state.initiate === 1) {
-      console.log('Crypto rätt');
-      this.update();
+      this.setState({
+        counter: this.state.counter + 1,
+        answer: 'You were correct!'
+      });
     }
     else {
-      console.log('Crypto fel');
+      this.setState({
+        answer: 'You were wrong...'
+      });
     }
+
+    this.setState({ showAnswer: true });
+    this.resetState();
+
 
   }
 
   handlePokemonClick = () => {
     if (this.state.initiate === 2) {
-      console.log('Pokemon rätt');
-      this.update();
+      this.setState({
+        counter: this.state.counter + 1,
+        answer: 'You were correct!'
+      });
     }
     else {
-      console.log('Pokemon fel');
+      this.setState({
+        answer: 'You were wrong...'
+      });
     }
+    this.setState({ showAnswer: true });
+    this.resetState();
+
   }
+
+  showModal = () => {
+    this.setState({ showAnswer: true });
+  };
+
+  hideModal = () => {
+    this.setState({ showAnswer: false });
+  };
+
 
 
   render() {
@@ -78,10 +107,15 @@ class App extends Component {
           <button onClick={this.handleCryptoClick}>Crypto</button>
           <button onClick={this.handlePokemonClick}>Pokemon</button>
         </div>
+        <Modal showAnswer={this.state.showAnswer} handleClose={this.hideModal}>
+          <p>{this.state.answer}</p>
+        </Modal>
+        <h3>Points: {this.state.counter}</h3>
       </div>
     );
   }
 }
+
 
 
 
